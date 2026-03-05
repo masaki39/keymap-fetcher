@@ -62,6 +62,7 @@ export default function Home() {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && generateKeymap(input)}
           placeholder="e.g., h,j,k,l or <C-a>,<D-s>"
           style={styles.input}
         />
@@ -99,12 +100,12 @@ export default function Home() {
         <button onClick={copyUrl} style={styles.button}>
           Copy URL
         </button>
-        <button onClick={downloadSVG} style={styles.button}>
-          Download SVG
-        </button>
       </div>
 
       <div style={styles.copySection}>
+        <button onClick={downloadSVG} style={styles.button}>
+          Download SVG
+        </button>
         <button onClick={copyMarkdownImageClickable} style={styles.button}>
           Copy Markdown (clickable)
         </button>
