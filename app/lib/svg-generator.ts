@@ -40,9 +40,9 @@ export function generateKeyboardSVG(highlighted: Set<KeyId>): string {
     renderKey(key, highlighted.has(key.id))
   ).join('\n');
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="880" height="290" role="img" aria-label="Keyboard diagram">
-  <rect width="880" height="290" fill="${COLORS.background}"/>
-  <rect x="10" y="10" width="860" height="270" rx="12" fill="${COLORS.body}"/>
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="838" height="290" role="img" aria-label="Keyboard diagram">
+  <rect width="838" height="290" fill="${COLORS.background}"/>
+  <rect x="10" y="10" width="818" height="270" rx="12" fill="${COLORS.body}"/>
 ${keys}
 </svg>`;
 }
