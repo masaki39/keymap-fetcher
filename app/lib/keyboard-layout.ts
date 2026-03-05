@@ -70,7 +70,7 @@ export const KEYBOARD_KEYS: KeyDef[] = [
 
   // Row 3 – Home row (y=147, h=40)
   // Ctrl @w=60, 11 keys @w=50 (step=55), ] @w=50
-  { id: 'key_ctrl_row3', label: 'ctrl', x: 24, y: 147, w: 60, h: 40 },
+  { id: 'key_ctrl', label: 'ctrl', x: 24, y: 147, w: 60, h: 40 },
   { id: 'key_a', label: 'A', x: 89, y: 147, w: 50, h: 40 },
   { id: 'key_s', label: 'S', x: 144, y: 147, w: 50, h: 40 },
   { id: 'key_d', label: 'D', x: 199, y: 147, w: 50, h: 40 },
@@ -102,7 +102,7 @@ export const KEYBOARD_KEYS: KeyDef[] = [
 
   // Row 5 – Bottom row (y=237, h=32)
   { id: 'key_caps', label: 'caps', x: 24, y: 237, w: 50, h: 32 },
-  { id: 'key_opt_l', label: 'opt', x: 79, y: 237, w: 50, h: 32 },
+  { id: 'key_opt', label: 'opt', x: 79, y: 237, w: 50, h: 32 },
   { id: 'key_cmd_l', label: 'cmd', x: 134, y: 237, w: 68, h: 32 },
   { id: 'key_eisu_bot', label: '英数', x: 207, y: 237, w: 62, h: 32 },
   { id: 'key_space', label: '', x: 274, y: 237, w: 179, h: 32 },
@@ -162,13 +162,25 @@ export const VIM_KEY_MAP: VimKeyMap = {
   'f1': ['key_f1'], 'f2': ['key_f2'], 'f3': ['key_f3'], 'f4': ['key_f4'],
   'f5': ['key_f5'], 'f6': ['key_f6'], 'f7': ['key_f7'], 'f8': ['key_f8'],
   'f9': ['key_f9'], 'f10': ['key_f10'], 'f11': ['key_f11'], 'f12': ['key_f12'],
+  // Standalone modifiers
+  'ctrl': ['key_ctrl'],
+  'shift': ['key_shift_l'],
+  'shift-l': ['key_shift_l'],
+  'shift-r': ['key_shift_r'],
+  'cmd': ['key_cmd_l'],
+  'cmd-l': ['key_cmd_l'],
+  'cmd-r': ['key_cmd_r'],
+  'opt': ['key_opt'],
+  'alt': ['key_opt'],
+  'fn': ['key_fn'],
+  'caps': ['key_caps'],
 };
 
 // Modifier prefix in Vim <X-key> notation → key ID
 export const MODIFIER_KEY_MAP: Record<string, KeyId> = {
   'c': 'key_ctrl',
   's': 'key_shift_l',
-  'm': 'key_opt_l',  // Meta = Option on Mac
-  'a': 'key_opt_l',  // Alt = Option on Mac
+  'm': 'key_opt',  // Meta = Option on Mac
+  'a': 'key_opt',  // Alt = Option on Mac
   'd': 'key_cmd_l',  // D = Command
 };

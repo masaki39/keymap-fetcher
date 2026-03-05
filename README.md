@@ -12,6 +12,10 @@ Vim motion keys (hjkl):
 
 ![hjkl](https://keymap-fetcher.vercel.app/api/keymap?keys=h,j,k,l)
 
+Modifier keys:
+
+![modifiers](https://keymap-fetcher.vercel.app/api/keymap?keys=ctrl,shift-l,cmd-r,opt)
+
 ## Usage
 
 Embed in Markdown:
@@ -51,6 +55,8 @@ Keys follow Vim conventions:
 | `<S-x>` | Shift + x |
 | `<D-x>` | Command (⌘) + x |
 | `<M-x>`, `<A-x>` | Option (⌥) + x |
+| `ctrl`, `shift`, `cmd`, `opt`, `alt`, `fn`, `caps` | Modifier keys alone |
+| `shift-l`, `shift-r`, `cmd-l`, `cmd-r` | Shift/Command with side |
 | `-`, `^`, `¥`, `@`, `[`, `;`, `:`, `]`, `,`, `.`, `/`, `_` | Symbol keys |
 
 ## Self-hosting on Vercel
