@@ -154,6 +154,7 @@ export const VIM_KEY_MAP: VimKeyMap = {
   'del': ['key_delete'],
   'tab': ['key_tab'],
   'space': ['key_space'],
+  'comma': ['key_lt'],
   'up': ['key_arrow_u'],
   'down': ['key_arrow_d'],
   'left': ['key_arrow_l'],

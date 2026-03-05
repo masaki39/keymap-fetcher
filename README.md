@@ -48,7 +48,8 @@ Keys follow Vim conventions:
 | `<CR>`, `<Enter>`, `<Return>` | Return/Enter |
 | `<BS>`, `<Backspace>`, `<Del>` | Delete |
 | `<Tab>` | Tab |
-| `<Space>`, ` ` (space) | Space bar |
+| `<Space>`, `space` | Space bar |
+| `<Comma>`, `comma` | , (comma) |
 | `<Up>`, `<Down>`, `<Left>`, `<Right>` | Arrow keys |
 | `<F1>`–`<F12>` | Function keys |
 | `<C-x>` | Ctrl + x |
@@ -57,7 +58,7 @@ Keys follow Vim conventions:
 | `<M-x>`, `<A-x>` | Option (⌥) + x |
 | `ctrl`, `shift`, `cmd`, `opt`, `alt`, `fn`, `caps` | Modifier keys alone |
 | `shift-l`, `shift-r`, `cmd-l`, `cmd-r` | Shift/Command with side |
-| `-`, `^`, `¥`, `@`, `[`, `;`, `:`, `]`, `,`, `.`, `/`, `_` | Symbol keys |
+| `-`, `^`, `¥`, `@`, `[`, `;`, `:`, `]`, `.`, `/`, `_` | Symbol keys |
 
 ## Self-hosting on Vercel
 
