@@ -175,6 +175,10 @@ export const VIM_KEY_MAP: VimKeyMap = {
   'alt': ['key_opt'],
   'fn': ['key_fn'],
   'caps': ['key_caps'],
+  'eisu': ['key_eisu_bot'],
+  '英数': ['key_eisu_bot'],
+  'kana': ['key_kana'],
+  'かな': ['key_kana'],
 };
 
 // Modifier prefix in Vim <X-key> notation → key ID
