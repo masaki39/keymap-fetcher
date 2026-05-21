@@ -1,11 +1,15 @@
-import { KeyId, VIM_KEY_MAP, MODIFIER_KEY_MAP } from './keyboard-layout';
+import { KeyId, VimKeyMap, VIM_KEY_MAP, MODIFIER_KEY_MAP } from './keyboard-layout';
 
 // Parses a comma-separated Vim key notation string into a Set of key IDs.
 // Examples:
 //   "j,k,<C-a>,<Esc>" → Set { 'key_j', 'key_k', 'key_ctrl', 'key_a', 'key_esc' }
 //   "h,j,k,l"         → Set { 'key_h', 'key_j', 'key_k', 'key_l' }
 //   "<S-F1>"           → Set { 'key_shift_l', 'key_f1' }
-export function parseKeys(input: string): Set<KeyId> {
+export function parseKeys(
+  input: string,
+  vimMap: VimKeyMap = VIM_KEY_MAP,
+  modifierMap: Record<string, KeyId> = MODIFIER_KEY_MAP,
+): Set<KeyId> {
   const result = new Set<KeyId>();
 
   if (!input.trim()) return result;
@@ -23,27 +27,26 @@ export function parseKeys(input: string): Set<KeyId> {
         const modChar = modMatch[1].toLowerCase();
         const keyPart = modMatch[2].toLowerCase();
 
-        // Modifier + key: e.g. C-a, S-F1, D-w
-        const modId = MODIFIER_KEY_MAP[modChar];
+        const modId = modifierMap[modChar];
         if (modId) result.add(modId);
 
-        const keyIds = VIM_KEY_MAP[keyPart];
+        const keyIds = vimMap[keyPart];
         if (keyIds) keyIds.forEach(id => result.add(id));
       } else {
         // Try standalone modifier: <C>, <S>, <M>, <A>, <D>
-        const standaloneModId = MODIFIER_KEY_MAP[inner.toLowerCase()];
+        const standaloneModId = modifierMap[inner.toLowerCase()];
         if (standaloneModId) {
           result.add(standaloneModId);
         } else {
           // Named key: e.g. Esc, CR, Tab, F1
-          const keyIds = VIM_KEY_MAP[inner.toLowerCase()];
+          const keyIds = vimMap[inner.toLowerCase()];
           if (keyIds) keyIds.forEach(id => result.add(id));
         }
       }
     } else {
       // Bare token: single char or named key (e.g. "j", "esc", "f1")
       const lower = token.toLowerCase();
-      const keyIds = VIM_KEY_MAP[lower] ?? VIM_KEY_MAP[token];
+      const keyIds = vimMap[lower] ?? vimMap[token];
       if (keyIds) keyIds.forEach(id => result.add(id));
     }
   }

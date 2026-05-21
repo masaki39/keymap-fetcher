@@ -2,14 +2,39 @@
 
 import { useState } from 'react'
 
+type LayoutId = 'mba-jis' | 'hhkb-us'
+
+const LAYOUT_LABELS: Record<LayoutId, string> = {
+  'mba-jis': 'MacBook Air JIS',
+  'hhkb-us': 'HHKB US',
+}
+
 export default function Home() {
   const [input, setInput] = useState('h,j,k,l')
-  const [imgSrc, setImgSrc] = useState('/api/keymap?keys=h,j,k,l')
+  const [layout, setLayout] = useState<LayoutId>('mba-jis')
+  const [fn, setFn] = useState(false)
+  const [imgSrc, setImgSrc] = useState('/api/keymap?keys=h,j,k,l&layout=mba-jis')
 
-  const generateKeymap = (keys: string) => {
-    const url = `/api/keymap?keys=${encodeURIComponent(keys)}`
-    setImgSrc(url)
+  const buildUrl = (keys: string, layoutId: LayoutId, fnHeld: boolean) => {
+    let url = `/api/keymap?keys=${encodeURIComponent(keys)}&layout=${layoutId}`
+    if (fnHeld) url += '&fn=1'
+    return url
+  }
+
+  const generateKeymap = (keys: string, layoutId: LayoutId = layout, fnHeld: boolean = fn) => {
+    setImgSrc(buildUrl(keys, layoutId, fnHeld))
     setInput(keys)
+  }
+
+  const switchLayout = (layoutId: LayoutId) => {
+    setLayout(layoutId)
+    setImgSrc(buildUrl(input, layoutId, fn))
+  }
+
+  const toggleFn = () => {
+    const next = !fn
+    setFn(next)
+    setImgSrc(buildUrl(input, layout, next))
   }
 
   const copyUrl = async () => {
@@ -27,7 +52,7 @@ export default function Home() {
 
   const copyMarkdownImageClickable = async () => {
     const fullSvgUrl = `${window.location.origin}${imgSrc}`
-    const fullLinkUrl = `${window.location.origin}/?keys=${encodeURIComponent(input)}`
+    const fullLinkUrl = `${window.location.origin}/?keys=${encodeURIComponent(input)}&layout=${layout}${fn ? '&fn=1' : ''}`
     const markdown = `[![Keyboard keybindings](${fullSvgUrl})](${fullLinkUrl})`
     await navigator.clipboard.writeText(markdown)
     alert('Markdown image link copied!')
@@ -55,6 +80,25 @@ export default function Home() {
         >
           → More details
         </a>
+      </div>
+
+      <div style={styles.controlRow}>
+        <div style={styles.layoutSelector}>
+          {(Object.keys(LAYOUT_LABELS) as LayoutId[]).map(id => (
+            <button
+              key={id}
+              onClick={() => switchLayout(id)}
+              style={layout === id ? styles.layoutButtonActive : styles.layoutButton}
+            >
+              {LAYOUT_LABELS[id]}
+            </button>
+          ))}
+        </div>
+        {layout === 'hhkb-us' && (
+          <button onClick={toggleFn} style={fn ? styles.layoutButtonActive : styles.layoutButton}>
+            Fn
+          </button>
+        )}
       </div>
 
       <div style={styles.inputSection}>
@@ -130,6 +174,39 @@ const styles = {
     fontFamily: 'system-ui, -apple-system, sans-serif',
     background: '#1e1e1e',
     color: '#fff',
+  } as const,
+  controlRow: {
+    display: 'flex',
+    gap: '8px',
+    alignItems: 'center',
+    marginBottom: '20px',
+  } as const,
+  layoutSelector: {
+    display: 'flex',
+    gap: '4px',
+    background: '#2a2a2a',
+    padding: '4px',
+    borderRadius: '8px',
+  } as const,
+  layoutButton: {
+    padding: '6px 16px',
+    background: 'transparent',
+    color: '#888',
+    border: 'none',
+    borderRadius: '6px',
+    fontWeight: '600',
+    cursor: 'pointer',
+    fontSize: '13px',
+  } as const,
+  layoutButtonActive: {
+    padding: '6px 16px',
+    background: '#F97316',
+    color: '#000',
+    border: 'none',
+    borderRadius: '6px',
+    fontWeight: '600',
+    cursor: 'pointer',
+    fontSize: '13px',
   } as const,
   inputSection: {
     display: 'flex',

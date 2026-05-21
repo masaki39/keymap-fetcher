@@ -3,6 +3,7 @@ export type KeyId = string;
 export interface KeyDef {
   id: KeyId;
   label: string;
+  shiftLabel?: string;
   x: number;
   y: number;
   w: number;
@@ -188,4 +189,28 @@ export const MODIFIER_KEY_MAP: Record<string, KeyId> = {
   'm': 'key_opt',  // Meta = Option on Mac
   'a': 'key_opt',  // Alt = Option on Mac
   'd': 'key_cmd_l',  // D = Command
+};
+
+import { HHKB_US_KEYS, HHKB_US_VIM_KEY_MAP, HHKB_US_CANVAS, HHKB_US_MODIFIER_KEY_MAP } from './keyboards/hhkb-us';
+
+export type LayoutId = 'mba-jis' | 'hhkb-us';
+
+export const LAYOUTS: Record<LayoutId, {
+  keys: KeyDef[];
+  vimMap: VimKeyMap;
+  modifierMap: Record<string, KeyId>;
+  canvas: { width: number; height: number; bodyX: number; bodyY: number; bodyW: number; bodyH: number };
+}> = {
+  'mba-jis': {
+    keys: KEYBOARD_KEYS,
+    vimMap: VIM_KEY_MAP,
+    modifierMap: MODIFIER_KEY_MAP,
+    canvas: { width: 838, height: 290, bodyX: 10, bodyY: 10, bodyW: 818, bodyH: 270 },
+  },
+  'hhkb-us': {
+    keys: HHKB_US_KEYS,
+    vimMap: { ...VIM_KEY_MAP, ...HHKB_US_VIM_KEY_MAP },
+    modifierMap: HHKB_US_MODIFIER_KEY_MAP,
+    canvas: HHKB_US_CANVAS,
+  },
 };
