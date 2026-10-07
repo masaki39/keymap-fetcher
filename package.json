@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/masaki39/keymap-fetcher/issues"
   },
-  "homepage": "https://github.com/masaki39/keymap-fetcher#readme",
+  "homepage": "https://keymap.masaki39.net",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

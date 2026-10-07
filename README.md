@@ -6,29 +6,29 @@ A Vercel API that returns an SVG diagram of a keyboard with specified keys highl
 
 Vim motion keys (hjkl) on MacBook Air JIS:
 
-![hjkl](https://keymap-fetcher.vercel.app/api/keymap?keys=h,j,k,l)
+![hjkl](https://keymap.masaki39.net/api/keymap?keys=h,j,k,l)
 
 Vim motion keys on HHKB US:
 
-![hjkl hhkb](https://keymap-fetcher.vercel.app/api/keymap?keys=h,j,k,l&layout=hhkb-us)
+![hjkl hhkb](https://keymap.masaki39.net/api/keymap?keys=h,j,k,l&layout=hhkb-us)
 
 HHKB Fn layer:
 
-![fn layer](https://keymap-fetcher.vercel.app/api/keymap?keys=h,j,k,l&layout=hhkb-us&fn=1)
+![fn layer](https://keymap.masaki39.net/api/keymap?keys=h,j,k,l&layout=hhkb-us&fn=1)
 
 ## Usage
 
 Embed in Markdown:
 
 ```markdown
-![keymap](https://keymap-fetcher.vercel.app/api/keymap?keys=h,j,k,l)
-![keymap](https://keymap-fetcher.vercel.app/api/keymap?keys=h,j,k,l&layout=hhkb-us)
+![keymap](https://keymap.masaki39.net/api/keymap?keys=h,j,k,l)
+![keymap](https://keymap.masaki39.net/api/keymap?keys=h,j,k,l&layout=hhkb-us)
 ```
 
 Or with curl:
 
 ```sh
-curl "https://keymap-fetcher.vercel.app/api/keymap?keys=h,j,k,l&layout=hhkb-us" -o keymap.svg
+curl "https://keymap.masaki39.net/api/keymap?keys=h,j,k,l&layout=hhkb-us" -o keymap.svg
 ```
 
 ### Parameters
